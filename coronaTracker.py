@@ -29,9 +29,18 @@ def scrapeWeb():
     addSpreadsheet(coronaData)
 
 def addSpreadsheet(statsDictionary):
-    wb = openpyxl.Workbook()
+    wb = openpyxl.load_workbook('coronaTracker.xlsx')
     sheet = wb['Sheet']
-    print(statsDictionary)
+    for country in list(statsDictionary.keys()):
+        countryStats = list(statsDictionary[country].items())
+        for i in range(len(countryStats)):
+            # sheet.cell(row=rowNum,column=2).value = countryStats[i][1]
+            print(countryStats[i][1])
+
+            # print(countryStats[i][0], end=' ')
+            # print(countryStats[i][1])
+
+
     wb.save('coronaTracker.xlsx')
 
 scrapeWeb()
